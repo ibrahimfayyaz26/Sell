@@ -52,7 +52,7 @@ contract Swap {
 
     require(token.balanceOf(address(this)) >= tokenAmount);
 
-    token.transfer(msg.sender, tokenAmount);
+    token.transferFrom(address(this), msg.sender, tokenAmount);
 
     emit TokensPurchased(msg.sender, address(token), tokenAmount, rate);
   }
