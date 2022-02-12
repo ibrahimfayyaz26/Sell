@@ -10,7 +10,7 @@ module.exports = async function (deployer) {
   await deployer.deploy(Token);
   const token = await Token.deployed()
 
-  await deployer.deploy(Swap, token.address,100);
+  await deployer.deploy(Swap, token.address,2);
 
   await deployer.deploy(Stake,token.address);
 

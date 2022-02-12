@@ -17,8 +17,10 @@ contract("Swap", ([buyer, investor]) => {
     });
 
     describe('buyTokens()', async () => {
-        before(async () => {
-         await swap.buyTokens({ from: investor, value: token("1")})
-        })
-      })
+      it('buyTokens', async () => {
+        await token.transfer(swap.address,tokens("100"))
+            await swap.buyTokens({ from: investor,value:web3.utils.toWei("1", "ether")})
+       })
+     });
+      
 });

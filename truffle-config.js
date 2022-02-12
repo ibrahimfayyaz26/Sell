@@ -26,7 +26,7 @@ const bscTest = "https://data-seed-prebsc-1-s1.binance.org:8545/";
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 const privateKey = [
-  "41b4c5588fb4f223cb464d83206f08d6e033509bf16de9897b0f5d6c68526792",
+  "06b42b755e39b0ba4f6e6a791ec99a2ba64ccaffc0e39d1817785c7f5333f577",
   // "d3696a91f60806f606b9357fea75ced99dd0eaeeb6fcd0bb41546f4498519132"
 ]
 
@@ -107,7 +107,7 @@ module.exports = {
           enabled: false,
           runs: 200
         },
-        evmVersion: "byzantium"
+        evmVersion: "petersburg"
       }
     },
   },

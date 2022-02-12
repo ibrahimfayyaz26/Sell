@@ -4,11 +4,12 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 
 contract Stake {
-    string public name = "Stake";
+ string public name = "Stake";
+    address public owner;
     IERC20 public token;
 
     address[] public stakers;
-    mapping(address => uint) public stakingBalance;
+    mapping(address => uint) public balance;
     mapping(address => bool) public hasStaked;
     mapping(address => bool) public isStaking;
 
@@ -16,13 +17,12 @@ contract Stake {
         token = _token;
     }
 
-    function stakeTokens(uint _amount) public {
-
+    function stakeToken(uint _amount) public {
         require(_amount > 0);
 
         token.transferFrom(msg.sender, address(this), _amount);
 
-        stakingBalance[msg.sender] = stakingBalance[msg.sender] + _amount;
+        balance[msg.sender] = balance[msg.sender] + _amount;
 
         if(!hasStaked[msg.sender]) {
             stakers.push(msg.sender);
@@ -30,6 +30,19 @@ contract Stake {
 
         isStaking[msg.sender] = true;
         hasStaked[msg.sender] = true;
+    }
+
+    function unstakeToken() public {
+
+        uint balance = balance[msg.sender];
+
+        require(balance > 0);
+
+        token.transfer(msg.sender, balance);
+
+        balance[msg.sender] = 0;
+
+        isStaking[msg.sender] = false;
     }
 
 }
